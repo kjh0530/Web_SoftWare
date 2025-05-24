@@ -1,0 +1,9 @@
+/* src/components/Header.css */
+.hover-dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* 살짝 딜레이 제거 */
+}
+
+.dropdown-menu {
+  margin-top: 0.5rem;
+}
