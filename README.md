@@ -1,70 +1,169 @@
-# Getting Started with Create React App
+# 📘 Taskboard: 동아리 기반 하루 루틴 플래너 & 집중 타이머
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🔍 프로젝트 개요
 
-## Available Scripts
+**Taskboard**는 동아리 홈페이지와 개인 맞춤형 루틴 플래너, 집중 타이머(Pomodoro)를 통합한 웹 플랫폼입니다.  
+사용자는 로그인 후 대시보드에서 오늘의 일정을 확인하고, 루틴에 따라 집중 타이머를 실행하며 하루를 체계적으로 관리할 수 있습니다.
 
-In the project directory, you can run:
+> 💡 HTML, CSS, JavaScript, Bootstrap, Firebase 기반으로 개발되었습니다.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🧩 주요 기능
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🏠 동아리 홈페이지
+- 동아리 사진 및 홍보글 표시
+- Firebase 기반 이메일 인증 회원가입
+- 학교 이메일로 인증코드 전송 및 확인 기능
 
-### `npm test`
+### 📋 대시보드
+- 로그인 시 메인화면으로 진입
+- 오늘의 할 일 목록 요약 및 진행률 프로그레스바
+- 항목 클릭 시 해당 시간의 플래너로 이동
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 📅 루틴 플래너
+- 하루 시간대별 일정 시각화 (타임라인 방식)
+- 색상 블록으로 시간대별 구분
+- 항목 클릭 시 뽀모도로 타이머 자동 실행
 
-### `npm run build`
+### ⏱️ 집중 타이머 (Pomodoro 방식)
+- 25분 집중 / 5분 휴식 주기
+- 상태별 애니메이션 및 현재 타이머 상태 표시
+- 완료 시 할 일 상태 완료 + 포인트 반영
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🏆 포인트 및 랭킹 시스템
+- 할 일 완료 시 포인트 획득 (+10)
+- 일일/주간 누적 포인트 기준으로 랭킹 표시
+- 사용자별 활동 피드백 제공
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ⚙️ 사용 기술
 
-### `npm run eject`
+| 구분          | 기술 스택                                |
+|---------------|-------------------------------------------|
+| 프론트엔드     | HTML, CSS, JavaScript                    |
+| 스타일링       | Bootstrap 5                              |
+| JS 라이브러리  | Chart.js, Moment.js                      |
+| 인증/DB        | Firebase Authentication + Firestore      |
+| 메일 발송      | Firebase Cloud Functions + Nodemailer    |
+| 호스팅         | Firebase Hosting                         |
+| 버전 관리      | Git + GitHub                             |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ✅ 사용자 흐름 (UX 기준)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. [비로그인 사용자]  
+   → 동아리 홈페이지(사진 + 소개글) → 로그인 또는 회원가입  
+   → 학교 이메일 인증 후 가입 완료
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. [로그인 후]  
+   → 대시보드로 자동 이동  
+   → 오늘의 할 일 목록 확인  
+   → 항목 클릭 → 플래너에서 시간대 시각화 확인
 
-## Learn More
+3. [플래너에서 클릭]  
+   → 집중 타이머 실행 (25분 뽀모도로)  
+   → 완료 시 진행률 갱신 및 포인트 지급
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. [랭킹 페이지]  
+   → 사용자별 누적 포인트 랭킹 확인  
+   → 뱃지 또는 칭호 시스템 (선택)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🧾 Firestore 데이터 구조
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### users
+```json
+{
+  "uid": "abc123",
+  "email": "user@school.ac.kr",
+  "displayName": "홍길동",
+  "totalPoints": 120,
+  "lastCompleted": "2025-05-13"
+}
+```
 
-### Analyzing the Bundle Size
+### tasks
+```json
+{
+  "userId": "abc123",
+  "title": "자료구조 과제",
+  "date": "2025-05-13",
+  "timeSlot": "14:00-14:25",
+  "completed": false
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### routines
+```json
+{
+  "userId": "abc123",
+  "timeSlot": "10:00-10:25",
+  "label": "운동",
+  "color": "#FFCC00"
+}
+```
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## ✨ 주요 페이지 구성
 
-### Advanced Configuration
+| 경로            | 설명 |
+|-----------------|------|
+| `/`             | 동아리 소개, 사진, 로그인/회원가입 버튼 |
+| `/dashboard`    | 오늘의 할 일 목록, 진행률 표시 |
+| `/planner`      | 하루 일정 타임라인, 클릭 시 타이머 연결 |
+| `/timer`        | 뽀모도로 타이머 화면 |
+| `/leaderboard`  | 사용자 포인트 랭킹 표시 |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## 🔒 이메일 인증 흐름
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. 회원가입 시 학교 이메일(@school.ac.kr) 입력
+2. Cloud Function으로 인증코드 전송 (Nodemailer 사용)
+3. 인증코드 입력 후 일치 확인 → 가입 완료 처리
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🚀 실행 및 배포 방법
+
+### 1. Firebase 프로젝트 설정
+- Firebase 콘솔에서 Auth, Firestore, Functions, Hosting 활성화
+
+### 2. 로컬 개발
+```bash
+firebase login
+firebase init  # functions + firestore + hosting 설정
+firebase serve
+```
+
+### 3. 배포
+```bash
+firebase deploy
+```
+
+---
+
+## 🙌 팀원 역할
+
+| 이름 | 역할 |
+|------|------|
+| A    | 메인 화면, 대시보드 구현 |
+| B    | 이메일 인증 로직, Firebase Functions |
+| C    | 플래너 및 타이머 로직 |
+| D    | 포인트 시스템, 랭킹 페이지 및 시각화 |
+
+---
+
+## 📌 향후 개선 아이디어
+
+- 리마인더 푸시 알림 (FCM)
+- 다크모드 UI
+- 주간 리포트 PDF 생성
+- 앱 버전으로 확장 (React Native 등)
+
+---
