@@ -1,9 +1,15 @@
-/* src/components/Header.css */
-.hover-dropdown:hover .dropdown-menu {
-  display: block;
-  margin-top: 0; /* 살짝 딜레이 제거 */
+/* 기본 상태: 회색 텍스트 + 전역 적용 */
+.nav-link {
+  color: gray !important;
+  transition: color 0.2s ease;
 }
 
-.dropdown-menu {
-  margin-top: 0.5rem;
+/* hover 시: 파란색으로 */
+.nav-link:hover {
+  color: #0a58ca !important;
+}
+.navbar-brand img {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
 }

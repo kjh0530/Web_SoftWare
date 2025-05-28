@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 import React from 'react';
 import Header from '../components/Header';
 import IntroSection from '../components/IntroSection';
@@ -11,12 +10,19 @@ function Home() {
       <Header />
       <div className="container mt-4">
         <div className="row">
-          <div className="col-lg-8 mb-4">
+          {/* 소개 섹션 - 밝은 회색 배경 */}
+          <div className="col-lg-8 mb-4 bg-light p-4 rounded shadow-sm">
             <IntroSection />
           </div>
+
           <div className="col-lg-4">
-            <ScheduleList />
-            <div className="mt-3">
+            {/* 일정 섹션 - 약간 더 진한 회색 */}
+            <div className="bg-secondary bg-opacity-10 p-3 mb-3 rounded shadow-sm">
+              <ScheduleList />
+            </div>
+
+            {/* 주간 순위 섹션 - tertiary 계열 색상 */}
+            <div className="bg-body-tertiary p-3 rounded shadow-sm">
               <WeeklyRanking />
             </div>
           </div>
