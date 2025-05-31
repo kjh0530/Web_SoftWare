@@ -44,7 +44,7 @@ function Header() {
               </a>
               <ul className="dropdown-menu">
                 <li><Link className="dropdown-item" to="#schedule">동아리 일정</Link></li>
-                <li><Link className="dropdown-item" to="#add">내 일정</Link></li>
+                <li><Link className="dropdown-item" to="myschedule">내 일정</Link></li>
               </ul>
             </li>
 
