@@ -7,6 +7,9 @@ const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
+app.get("/", (req, res) => {
+  res.send("? 서버가 정상적으로 실행 중입니다.");
+});
 
 // 회원가입
 app.post("/api/signup", async (req, res) => {
