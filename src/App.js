@@ -1,5 +1,5 @@
 // src/App.js
-import React from 'react';
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -9,6 +9,12 @@ import ClubHistory from './pages/ClubHistory';
 
 
 function App() {
+  useEffect(() => {
+  fetch("http://localhost:5000/api/hello")
+    .then(res => res.json())
+    .then(data => console.log(data.message));
+  }, []);
+  
   return (
     <Router>
       <Routes>

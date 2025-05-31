@@ -1,11 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
-import { BiLogIn } from 'react-icons/bi';            // 로그인 아이콘
-import { HiOutlineUserAdd } from 'react-icons/hi';   // 회원가입 아이콘
+import { BiLogIn } from 'react-icons/bi';
+import { HiOutlineUserAdd } from 'react-icons/hi';
+import { FiUser, FiLogOut } from 'react-icons/fi';
 import './Header.css';
 
 function Header() {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.reload(); // 상태 반영을 위해 새로고침
+  };
+
   return (
     <nav className="navbar navbar-expand-lg bg-white border-bottom py-0">
       <div className="container d-flex align-items-center justify-content-between">
@@ -66,16 +74,31 @@ function Header() {
           </ul>
         </div>
 
-        {/* 오른쪽 로그인 / 회원가입 */}
+        {/* 오른쪽 영역 */}
         <div className="d-none d-lg-flex gap-3 ms-auto">
-          <Link to="/login" className="nav-link d-flex align-items-center gap-1">
-            <BiLogIn size={18} />
-            로그인
-          </Link>
-          <Link to="/signup" className="nav-link d-flex align-items-center gap-1">
-            <HiOutlineUserAdd size={18} />
-            회원 가입
-          </Link>
+          {!user ? (
+            <>
+              <Link to="/login" className="nav-link d-flex align-items-center gap-1">
+                <BiLogIn size={18} />
+                로그인
+              </Link>
+              <Link to="/signup" className="nav-link d-flex align-items-center gap-1">
+                <HiOutlineUserAdd size={18} />
+                회원 가입
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/mypage" className="nav-link d-flex align-items-center gap-1">
+                <FiUser size={18} />
+                마이페이지
+              </Link>
+              <button onClick={handleLogout} className="btn btn-link nav-link d-flex align-items-center gap-1">
+                <FiLogOut size={18} />
+                로그아웃
+              </button>
+            </>
+          )}
         </div>
       </div>
     </nav>

@@ -1,6 +1,5 @@
-// src/pages/Signup.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 function Signup() {
@@ -15,22 +14,47 @@ function Signup() {
     email: ''
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (form.password !== form.confirmPassword) {
-      alert('비밀번호가 일치하지 않습니다.');
+      alert('❗ 비밀번호가 일치하지 않습니다.');
       return;
     }
 
-    // TODO: 회원가입 API 요청
-    console.log('회원가입 정보:', form);
-    alert('회원가입이 완료되었습니다!');
+    try {
+      const res = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: form.username,
+          password: form.password,
+          name: form.name,
+          studentId: form.studentId,
+          grade: form.grade,
+          birth: form.birth,
+          email: form.email
+        })
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        alert('🎉 회원가입이 완료되었습니다!');
+        navigate('/login');
+      } else {
+        alert(`❌ ${result.message}`);
+      }
+    } catch (err) {
+      alert('⚠️ 서버 오류');
+    }
   };
 
   return (
@@ -39,7 +63,6 @@ function Signup() {
       {/* 로고 */}
       <Link to="/">
         <img src={logo} alt="PDA 로고" height={100} style={{ marginTop: '100px' }} />
-
       </Link>
 
       {/* 회원가입 폼 */}
@@ -57,17 +80,9 @@ function Signup() {
           <input type="text" name="studentId" placeholder="학번" className="form-control mb-2" onChange={handleChange} required />
           <input type="text" name="grade" placeholder="학년" className="form-control mb-2" onChange={handleChange} required />
           <div className="mb-2">
-  <label htmlFor="birth" className="form-label">생년월일</label>
-  <input
-    type="date"
-    name="birth"
-    id="birth"
-    className="form-control"
-    onChange={handleChange}
-    required
-  />
-</div>
-
+            <label htmlFor="birth" className="form-label">생년월일</label>
+            <input type="date" name="birth" id="birth" className="form-control" onChange={handleChange} required />
+          </div>
           <input type="email" name="email" placeholder="이메일" className="form-control" onChange={handleChange} required />
         </div>
 

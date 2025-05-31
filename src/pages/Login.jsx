@@ -1,10 +1,35 @@
-// src/pages/Login.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        alert('✅ 로그인 성공!');
+        localStorage.setItem('user', JSON.stringify({ username }));
+        // TODO: 로그인 상태 저장 (localStorage 등)
+        navigate('/');
+      } else {
+        alert(`❌ ${result.message}`);
+      }
+    } catch (err) {
+      alert('⚠️ 서버 오류');
+    }
+  };
 
   return (
     <div className="d-flex flex-column align-items-center justify-content-center vh-100 bg-white">
@@ -19,11 +44,15 @@ function Login() {
           type="text"
           className="form-control mb-3"
           placeholder="아이디"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="password"
           className="form-control mb-3"
           placeholder="비밀번호"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <div className="form-check mb-3">
@@ -39,7 +68,11 @@ function Login() {
           </label>
         </div>
 
-        <button className="btn btn-secondary w-100 fw-bold" style={{ borderRadius: '12px' }}>
+        <button
+          onClick={handleLogin}
+          className="btn btn-secondary w-100 fw-bold"
+          style={{ borderRadius: '12px' }}
+        >
           로그인
         </button>
       </div>
@@ -48,7 +81,7 @@ function Login() {
       <div className="mt-3 text-center text-secondary small">
         <a href="#!" className="me-2 text-decoration-none">비밀번호 찾기</a>|
         <a href="#!" className="mx-2 text-decoration-none">아이디 찾기</a>|
-        <a href="#!" className="ms-2 text-decoration-none">회원가입</a>
+        <Link to="/signup" className="ms-2 text-decoration-none">회원가입</Link>
       </div>
     </div>
   );
