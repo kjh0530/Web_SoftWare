@@ -23,8 +23,8 @@ function Header() {
                 소개
               </a>
               <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" to="#intro">동아리 연혁</Link></li>
-                <li><Link className="dropdown-item" to="#professor">교수님 소개</Link></li>
+                <li><Link className="dropdown-item" to="/intro">동아리 연혁</Link></li>
+                <li><Link className="dropdown-item" to="/professor">교수님 소개</Link></li>
                 <li><Link className="dropdown-item" to="#member">현임원 소개</Link></li>
               </ul>
             </li>

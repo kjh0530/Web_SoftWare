@@ -34,10 +34,12 @@ function Signup() {
   };
 
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center vh-100 bg-white position-relative">
+    <div className="d-flex flex-column align-items-center justify-content-center min-vh-100 bg-white position-relative" style={{ paddingBottom: '50px' }} >
+
       {/* 로고 */}
       <Link to="/">
-        <img src={logo} alt="PDA 로고" style={{ height: '60px', marginBottom: '40px' }} />
+        <img src={logo} alt="PDA 로고" height={100} style={{ marginTop: '100px' }} />
+
       </Link>
 
       {/* 회원가입 폼 */}

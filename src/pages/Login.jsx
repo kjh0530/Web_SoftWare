@@ -10,7 +10,7 @@ function Login() {
     <div className="d-flex flex-column align-items-center justify-content-center vh-100 bg-white">
       {/* PDA 로고 클릭 → 홈으로 이동 */}
       <Link to="/">
-        <img src={logo} alt="PDA 로고" style={{ height: '60px', marginBottom: '40px' }} />
+        <img src={logo} alt="PDA 로고" height={100} />
       </Link>
 
       {/* 로그인 박스 */}
