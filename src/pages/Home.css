@@ -1,0 +1,22 @@
+/* src/pages/Home.css */
+
+.home-wrapper {
+  position: relative;
+  min-height: 100vh;
+  background-image: url('../assets/bg.png'); /* ✅ public/assets/bg.jpg */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* ✈️ 비행기 이미지 스타일 */
+.plane-image {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 300px;
+  opacity: 0.4;
+  z-index: 1;
+  pointer-events: none;
+}

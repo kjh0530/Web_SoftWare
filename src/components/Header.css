@@ -1,13 +1,21 @@
-/* 기본 상태: 회색 텍스트 + 전역 적용 */
+/* src/components/Header.css */
+
+.navbar {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(4px); /* ✨ 선택: 유리 효과 */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* 네비게이션 스타일 */
 .nav-link {
   color: gray !important;
   transition: color 0.2s ease;
 }
 
-/* hover 시: 파란색으로 */
 .nav-link:hover {
   color: #0a58ca !important;
 }
+
 .navbar-brand img {
   margin: 0 !important;
   padding: 0 !important;

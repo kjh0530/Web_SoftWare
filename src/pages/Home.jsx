@@ -1,27 +1,31 @@
+// src/pages/Home.jsx
 import React from 'react';
+import './Home.css';
 import Header from '../components/Header';
 import IntroSection from '../components/IntroSection';
 import ScheduleList from '../components/ScheduleList';
 import WeeklyRanking from '../components/WeeklyRanking';
 
+// ✅ 이미지 직접 import (선택사항 - src/assets 사용하는 경우)
+import planeImage from '../assets/plane.png'; // ❗경로 주의
+
 function Home() {
   return (
-    <div>
+    <div className="home-wrapper">
       <Header />
-      <div className="container mt-4">
+
+      {/* ✈️ 비행기 이미지 오버레이 */}
+      <img src={planeImage} alt="비행기" className="plane-image" />
+
+      <div className="container mt-4 position-relative" style={{ zIndex: 2 }}>
         <div className="row">
-          {/* 소개 섹션 - 밝은 회색 배경 */}
           <div className="col-lg-8 mb-4 bg-light p-4 rounded shadow-sm">
             <IntroSection />
           </div>
-
           <div className="col-lg-4">
-            {/* 일정 섹션 - 약간 더 진한 회색 */}
             <div className="bg-secondary bg-opacity-10 p-3 mb-3 rounded shadow-sm">
               <ScheduleList />
             </div>
-
-            {/* 주간 순위 섹션 - tertiary 계열 색상 */}
             <div className="bg-body-tertiary p-3 rounded shadow-sm">
               <WeeklyRanking />
             </div>
