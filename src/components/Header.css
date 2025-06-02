@@ -1,14 +1,13 @@
 /* src/components/Header.css */
 
 .navbar {
-  background-color: rgba(255, 255, 255, 0.7) !important;
-  backdrop-filter: blur(4px); /* ✨ 선택: 유리 효과 */
+  background-color: rgba(255, 255, 255, 0.2) !important; /* 배경만 반투명 */
+  backdrop-filter: blur(6px); /* 💫 블러 처리 */
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* 네비게이션 스타일 */
 .nav-link {
-  color: gray !important;
+  color: #333 !important;
   transition: color 0.2s ease;
 }
 
@@ -20,4 +19,10 @@
   margin: 0 !important;
   padding: 0 !important;
   display: block;
+}
+
+.navbar .nav-link {
+  font-size: 1.3rem;   /* 또는 1.2rem 더 키우고 싶으면 */
+  font-weight: 500;
+  transition: color 0.2s ease;
 }

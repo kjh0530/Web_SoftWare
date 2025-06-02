@@ -1,22 +1,30 @@
 /* src/pages/Home.css */
 
+/* 홈 전체를 감싸는 배경 */
 .home-wrapper {
   position: relative;
   min-height: 100vh;
-  background-image: url('../assets/bg.png'); /* ✅ public/assets/bg.jpg */
+  background-image: url('../assets/bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  overflow: hidden;
+  background-attachment: fixed; /* ✅ 배경이 항상 전체 채움 */
+  overflow-x: hidden;
 }
 
-/* ✈️ 비행기 이미지 스타일 */
 .plane-image {
   position: absolute;
-  top: 10%;
-  right: 5%;
-  width: 300px;
-  opacity: 0.4;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -25%); /* ✅ 정확히 가운데 정렬 */
+  width: 1000px;
+  opacity: 0.8;
   z-index: 1;
   pointer-events: none;
+}
+
+/* 반투명 박스용 공통 클래스 */
+.transparent-box {
+  background-color: rgba(255, 255, 255, 0.5); /* 배경 반투명 */
+  backdrop-filter: blur(4px);
 }

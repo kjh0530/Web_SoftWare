@@ -15,7 +15,7 @@ function Header() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-white border-bottom py-0">
+    <nav className="navbar navbar-expand-lg  py-0">
       <div className="container d-flex align-items-center justify-content-between">
         {/* 왼쪽 로고 */}
         <Link className="navbar-brand d-flex align-items-center me-auto" to="/">
