@@ -148,6 +148,13 @@ firebase deploy
 
 ---
 
+### 4. 캘린더 실행 안될 때 
+```bash
+npm install @fullcalendar/react @fullcalendar/daygrid @fullcalendar/interaction
+```
+
+---
+
 ## 🙌 팀원 역할
 
 | 이름 | 역할 |
